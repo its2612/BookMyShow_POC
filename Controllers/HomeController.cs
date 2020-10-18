@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BMS.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         //string redisCacheName = ConfigurationManager.AppSettings["redisCacheName"];
