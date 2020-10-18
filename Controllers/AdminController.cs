@@ -15,7 +15,7 @@ using MongoDB.Driver;
 
 namespace BMS.Controllers
 {
-    [Authorize]
+    
     public class AdminController : Controller
     {
         private MongoDbSetting _mongoDbOptions { get; set; }
