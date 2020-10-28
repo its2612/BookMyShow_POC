@@ -16,7 +16,7 @@ using MongoDB.Driver;
 namespace BMS.Controllers
 {
     
-    public class AdminController : Controller
+     public class AdminController : Controller
     {
         private MongoDbSetting _mongoDbOptions { get; set; }
         private IMongoCollection<Movies> collection;
@@ -65,7 +65,7 @@ namespace BMS.Controllers
                         var extenstion = Path.GetExtension(files[0].FileName);
                         
                         #region blob
-                        string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage;AccountKey=o+npBZaJ2WVWjXdpDLiWnmO5I/H6yXJhptrVipbGz+TyhiAdvyL2c0yJbAYaXvy6ew2SyNmkq7/Rfcwoiu6K4w==;EndpointSuffix=core.windows.net";
+                        string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage1;AccountKey=XBK+O+GWuft1gw8a/nPwCik0WK3dJmZARk6bX99Ltmu4w2ZvkkTZXvSLf9QdflafDkzI70Ipr3KAeRKduGbudg==;EndpointSuffix=core.windows.net";
 
                         byte[] dataFiles;
                         // Retrieve storage account from connection string.
@@ -133,7 +133,7 @@ namespace BMS.Controllers
         public async Task<CloudBlockBlob> uploadBlob(string filename,Stream b )  
         {
             string systemFileName = filename;
-            string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsmoviestorage;AccountKey=gzF8YiAOfobkTqP6gnkkRFr1RUZQnXoM1qWhGlKIks73gAaoE8Qu9vNbQkb0TS+e4Mi55zuDBY3s7utS9hcgEQ==;EndpointSuffix=core.windows.net";
+            string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage1;AccountKey=XBK+O+GWuft1gw8a/nPwCik0WK3dJmZARk6bX99Ltmu4w2ZvkkTZXvSLf9QdflafDkzI70Ipr3KAeRKduGbudg==;EndpointSuffix=core.windows.net";
             // Retrieve storage account from connection string.
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
             // Create the blob client.
@@ -154,7 +154,10 @@ namespace BMS.Controllers
             ObjectId oId = new ObjectId(id);
             Movies movie = collection.Find(e => e.MovieId
        == oId).FirstOrDefault();
-            string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage;AccountKey=o+npBZaJ2WVWjXdpDLiWnmO5I/H6yXJhptrVipbGz+TyhiAdvyL2c0yJbAYaXvy6ew2SyNmkq7/Rfcwoiu6K4w==;EndpointSuffix=core.windows.net";
+            #region  blob delete
+           
+
+            string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage1;AccountKey=XBK+O+GWuft1gw8a/nPwCik0WK3dJmZARk6bX99Ltmu4w2ZvkkTZXvSLf9QdflafDkzI70Ipr3KAeRKduGbudg==;EndpointSuffix=core.windows.net";
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(blobstorageconnection);
             CloudBlobClient cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
             string strContainerName = "blobcontainer";
@@ -169,7 +172,7 @@ namespace BMS.Controllers
 
             var blob = cloudBlobContainer.GetBlobReference(fileName);
             await blob.DeleteIfExistsAsync();
-
+            #endregion
             TheatreMovie theatreMov = theatreMovie.Find(e => e.MID
        == oId).FirstOrDefault();
 
@@ -208,7 +211,7 @@ namespace BMS.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(webRootPath, @"movies");
                     var extenstion = Path.GetExtension(files[0].FileName);
-                    string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage;AccountKey=o+npBZaJ2WVWjXdpDLiWnmO5I/H6yXJhptrVipbGz+TyhiAdvyL2c0yJbAYaXvy6ew2SyNmkq7/Rfcwoiu6K4w==;EndpointSuffix=core.windows.net";
+                    string blobstorageconnection = "DefaultEndpointsProtocol=https;AccountName=bmsappstorage1;AccountKey=XBK+O+GWuft1gw8a/nPwCik0WK3dJmZARk6bX99Ltmu4w2ZvkkTZXvSLf9QdflafDkzI70Ipr3KAeRKduGbudg==;EndpointSuffix=core.windows.net";
 
                     byte[] dataFiles;
                     // Retrieve storage account from connection string.
